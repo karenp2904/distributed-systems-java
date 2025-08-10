@@ -1,0 +1,49 @@
+========================================
+  REPORTE DETALLADO DE BENCHMARK
+  Convertidor Web a PDF
+========================================
+
+FECHA: 2025-08-09 22:11:25
+
+PERFIL DE HARDWARE:
+- CPU Arquitectura: amd64
+- Núcleos disponibles: 16
+- Memoria JVM máxima: 5916 MB
+- Memoria JVM libre: 367 MB
+- Sistema Operativo: Linux 6.14.0-27-generic
+- Java Version: 21.0.8
+
+CONFIGURACIÓN DEL BENCHMARK:
+- URLs procesadas: 1
+- Iteraciones por configuración: 1
+- Hilos probados: [1]
+
+URLs UTILIZADAS:
+1. https://www.google.com
+
+RESULTADOS DETALLADOS:
+========================================
+HILOS: 1
+----------------------------------------
+Iteraciones realizadas: 1
+Tiempo promedio: 2303,00 ms (2,303 seg)
+Tiempo mínimo: 2303 ms
+Tiempo máximo: 2303 ms
+Desviación estándar: 0,00 ms
+Tiempos individuales:
+  Iteración 1: 2303 ms
+
+ANÁLISIS Y CONCLUSIONES:
+========================================
+- Configuración óptima: 1 hilos
+- Tiempo óptimo promedio: 2303,00 ms
+- Speedup máximo: 1,00x
+- Mejora máxima: 0,0%
+
+RECOMENDACIONES:
+- Núcleos del sistema: 16
+- Rango óptimo sugerido: 8-32 hilos
+
+========================================
+Reporte generado automáticamente
+========================================

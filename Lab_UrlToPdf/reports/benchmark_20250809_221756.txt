@@ -1,0 +1,69 @@
+========================================
+  REPORTE DETALLADO DE BENCHMARK
+  Convertidor Web a PDF
+========================================
+
+FECHA: 2025-08-09 22:17:56
+
+PERFIL DE HARDWARE:
+- CPU Arquitectura: amd64
+- Núcleos disponibles: 16
+- Memoria JVM máxima: 5916 MB
+- Memoria JVM libre: 362 MB
+- Sistema Operativo: Linux 6.14.0-27-generic
+- Java Version: 21.0.8
+
+CONFIGURACIÓN DEL BENCHMARK:
+- URLs procesadas: 4
+- Iteraciones por configuración: 3
+- Hilos probados: [1, 2]
+
+URLs UTILIZADAS:
+1. https://www.google.com
+2. https://www.wikipedia.org
+3. https://www.github.com
+4. https://www.stackoverflow.com
+
+RESULTADOS DETALLADOS:
+========================================
+HILOS: 1
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 33571,67 ms (33,572 seg)
+Tiempo mínimo: 32917 ms
+Tiempo máximo: 34448 ms
+Desviación estándar: 644,38 ms
+Tiempos individuales:
+  Iteración 1: 34448 ms
+  Iteración 2: 32917 ms
+  Iteración 3: 33350 ms
+
+HILOS: 2
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 21846,00 ms (21,846 seg)
+Tiempo mínimo: 20959 ms
+Tiempo máximo: 22299 ms
+Desviación estándar: 627,25 ms
+Speedup: 1,54x
+Eficiencia: 76,8%
+Mejora respecto a 1 hilo: 34,9%
+Tiempos individuales:
+  Iteración 1: 22280 ms
+  Iteración 2: 22299 ms
+  Iteración 3: 20959 ms
+
+ANÁLISIS Y CONCLUSIONES:
+========================================
+- Configuración óptima: 2 hilos
+- Tiempo óptimo promedio: 21846,00 ms
+- Speedup máximo: 1,54x
+- Mejora máxima: 34,9%
+
+RECOMENDACIONES:
+- Núcleos del sistema: 16
+- Rango óptimo sugerido: 8-32 hilos
+
+========================================
+Reporte generado automáticamente
+========================================
