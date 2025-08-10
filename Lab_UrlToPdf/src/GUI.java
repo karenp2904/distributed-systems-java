@@ -14,6 +14,11 @@ public class GUI extends JFrame {
     private JTextArea resultArea;
     private JProgressBar progressBar;
     
+    // Configuración de benchmark
+    private JSpinner maxThreadsSpinner;
+    private JSpinner maxUrlsSpinner;
+    private JSpinner iterationsSpinner;
+    
     public GUI() {
         initUI();
     }
@@ -28,27 +33,55 @@ public class GUI extends JFrame {
         topPanel.setBorder(BorderFactory.createTitledBorder("URLs (una por línea)"));
         
         urlArea = new JTextArea(8, 50);
-        urlArea.setText("https://www.google.com\nhttps://www.wikipedia.org\nhttps://www.github.com\nhttps://www.stackoverflow.com");
+        urlArea.setText("https://www.google.com\nhttps://www.wikipedia.org\nhttps://www.github.com\nhttps://www.stackoverflow.com\nhttps://www.oracle.com\nhttps://www.java.com");
         urlArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
         topPanel.add(new JScrollPane(urlArea));
         
-        // Panel de control
-        JPanel controlPanel = new JPanel(new FlowLayout());
-        controlPanel.add(new JLabel("Hilos:"));
+        // Panel de control principal
+        JPanel controlPanel = new JPanel(new GridLayout(2, 1));
+        
+        // Primera fila - Conversión básica
+        JPanel basicPanel = new JPanel(new FlowLayout());
+        basicPanel.setBorder(BorderFactory.createTitledBorder("Conversión Básica"));
+        
+        basicPanel.add(new JLabel("Hilos:"));
         threadSpinner = new JSpinner(new SpinnerNumberModel(4, 1, 32, 1));
-        controlPanel.add(threadSpinner);
+        basicPanel.add(threadSpinner);
         
         JButton convertBtn = new JButton("🔄 Convertir");
         convertBtn.addActionListener(this::convert);
-        controlPanel.add(convertBtn);
-        
-        JButton benchmarkBtn = new JButton("📊 Benchmark");
-        benchmarkBtn.addActionListener(this::benchmark);
-        controlPanel.add(benchmarkBtn);
+        basicPanel.add(convertBtn);
         
         JButton clearBtn = new JButton("🗑️ Limpiar");
         clearBtn.addActionListener(e -> resultArea.setText(""));
-        controlPanel.add(clearBtn);
+        basicPanel.add(clearBtn);
+        
+        // Segunda fila - Configuración de Benchmark
+        JPanel benchmarkPanel = new JPanel(new FlowLayout());
+        benchmarkPanel.setBorder(BorderFactory.createTitledBorder("Configuración de Benchmark"));
+        
+        benchmarkPanel.add(new JLabel("Máx Hilos:"));
+        maxThreadsSpinner = new JSpinner(new SpinnerNumberModel(16, 1, 32, 1));
+        benchmarkPanel.add(maxThreadsSpinner);
+        
+        benchmarkPanel.add(new JLabel("Máx URLs:"));
+        maxUrlsSpinner = new JSpinner(new SpinnerNumberModel(6, 1, 50, 1));
+        benchmarkPanel.add(maxUrlsSpinner);
+        
+        benchmarkPanel.add(new JLabel("Iteraciones:"));
+        iterationsSpinner = new JSpinner(new SpinnerNumberModel(3, 1, 10, 1));
+        benchmarkPanel.add(iterationsSpinner);
+        
+        JButton benchmarkBtn = new JButton("📊 Benchmark");
+        benchmarkBtn.addActionListener(this::benchmark);
+        benchmarkPanel.add(benchmarkBtn);
+        
+        JButton graphsBtn = new JButton("📈 Ver Gráficas");
+        graphsBtn.addActionListener(this::openGraphsFolder);
+        benchmarkPanel.add(graphsBtn);
+        
+        controlPanel.add(basicPanel);
+        controlPanel.add(benchmarkPanel);
         
         topPanel.add(controlPanel, BorderLayout.SOUTH);
         add(topPanel, BorderLayout.NORTH);
@@ -71,7 +104,8 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         
         appendResult("=== Convertidor Web a PDF ===\n");
-        appendResult("Ingrese URLs y presione Convertir o Benchmark\n\n");
+        appendResult("Configurar benchmark y presionar Convertir o Benchmark\n");
+        appendResult("ℹ️  Para benchmark recomendado: 3-5 iteraciones, 6-10 URLs\n\n");
     }
     
     private void convert(ActionEvent e) {
@@ -90,7 +124,7 @@ public class GUI extends JFrame {
                 progressBar.setIndeterminate(true);
                 progressBar.setString("Convirtiendo...");
                 
-                PDFConverter converter = new PDFConverter(); // No necesitas import!
+                PDFConverter converter = new PDFConverter();
                 return converter.convertUrls(urls, threads);
             }
             
@@ -133,24 +167,45 @@ public class GUI extends JFrame {
     
     private void benchmark(ActionEvent e) {
         List<String> urls = parseUrls();
-        if (urls.size() < 5) {
-            JOptionPane.showMessageDialog(this, "Se necesitan al menos 5 URLs para benchmark");
+        int maxUrls = (Integer) maxUrlsSpinner.getValue();
+        
+        if (urls.size() < 3) {
+            JOptionPane.showMessageDialog(this, "Se necesitan al menos 3 URLs para benchmark");
             return;
         }
 
-        // ✅ Creamos nueva lista que sí es final o efectivamente final
-        List<String> finalUrls = urls.subList(0, Math.min(32, urls.size()));
+        // Configuración del benchmark
+        int maxThreads = (Integer) maxThreadsSpinner.getValue();
+        int iterations = (Integer) iterationsSpinner.getValue();
+        
+        List<String> finalUrls = urls.subList(0, Math.min(maxUrls, urls.size()));
 
         SwingWorker<Void, String> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {
-                publish("📊 Iniciando benchmark con " + finalUrls.size() + " URLs...\n");
-                publish("⚠️  Esto puede tardar varios minutos\n\n");
+                publish("📊 Configuración del Benchmark:\n");
+                publish("   • URLs: " + finalUrls.size() + "\n");
+                publish("   • Hilos máximos: " + maxThreads + "\n");
+                publish("   • Iteraciones por configuración: " + iterations + "\n");
+                publish("   • Tiempo estimado: " + ((maxThreads * iterations * 30) / 60) + " minutos\n");
+                publish("⚠️  Iniciando benchmark...\n\n");
+                
                 progressBar.setIndeterminate(true);
                 progressBar.setString("Ejecutando benchmark...");
 
                 BenchmarkRunner runner = new BenchmarkRunner();
-                runner.runBenchmark(finalUrls); // ✅ usamos finalUrls
+                
+                // Configurar el benchmark con los parámetros de la GUI
+                int[] threadRange = new int[maxThreads];
+                for (int i = 0; i < maxThreads; i++) {
+                    threadRange[i] = i + 1;
+                }
+                
+                runner.setThreadCounts(threadRange);
+                runner.setMaxUrls(maxUrls);
+                runner.setIterations(iterations);
+                
+                runner.runBenchmark(finalUrls);
                 return null;
             }
 
@@ -162,19 +217,50 @@ public class GUI extends JFrame {
             @Override
             protected void done() {
                 publish("✅ Benchmark completado!\n");
-                publish("📁 Revisar carpeta 'reports' para el informe detallado\n\n");
+                publish("📁 Archivos generados:\n");
+                publish("   • reports/benchmark_XXXXXX.txt (reporte detallado)\n");
+                publish("   • reports/benchmark_data_XXXXXX.csv (datos CSV)\n");
+                publish("   • reports/graficas/ (gráficas PNG)\n\n");
+                
                 progressBar.setIndeterminate(false);
                 progressBar.setString("Benchmark terminado");
 
-                JOptionPane.showMessageDialog(GUI.this,
-                    "Benchmark completado!\nRevisar carpeta 'reports' para el informe.",
-                    "Benchmark Completo", JOptionPane.INFORMATION_MESSAGE);
+                // Mostrar diálogo de finalización
+                String message = String.format(
+                    "Benchmark completado!\n\n" +
+                    "Configuración utilizada:\n" +
+                    "• %d URLs procesadas\n" +
+                    "• %d configuraciones de hilos (1-%d)\n" +
+                    "• %d iteraciones por configuración\n\n" +
+                    "Revisar carpeta 'reports' para informes y gráficas.",
+                    finalUrls.size(), maxThreads, maxThreads, iterations
+                );
+                
+                JOptionPane.showMessageDialog(GUI.this, message, "Benchmark Completo", 
+                    JOptionPane.INFORMATION_MESSAGE);
             }
         };
 
         worker.execute();
     }
-
+    
+    private void openGraphsFolder(ActionEvent e) {
+        try {
+            File reportsDir = new File("reports");
+            if (reportsDir.exists()) {
+                Desktop.getDesktop().open(reportsDir);
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "La carpeta 'reports' no existe.\nEjecute un benchmark primero.", 
+                    "Carpeta no encontrada", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception ex) {
+            appendResult("❌ Error abriendo carpeta: " + ex.getMessage() + "\n");
+            JOptionPane.showMessageDialog(this, 
+                "No se pudo abrir la carpeta automáticamente.\nNavegue manualmente a la carpeta 'reports'.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     private List<String> parseUrls() {
         String[] lines = urlArea.getText().split("\n");
