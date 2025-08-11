@@ -1,6 +1,4 @@
-/**
- * Clase para almacenar el resultado de una conversión
- */
+
 public class ConversionResult {
     private final String url;
     private final String outputPath;

@@ -2,9 +2,6 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-/**
- * Interfaz de línea de comandos
- */
 public class CLIRunner {
     public void run(String[] args) {
         if (args.length < 2) {

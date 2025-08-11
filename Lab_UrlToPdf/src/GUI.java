@@ -5,9 +5,7 @@ import java.io.File;
 import java.util.*;
 import java.util.List;
 
-/**
- * Interfaz gráfica de usuario
- */
+
 public class GUI extends JFrame {
     private JTextArea urlArea;
     private JSpinner threadSpinner;

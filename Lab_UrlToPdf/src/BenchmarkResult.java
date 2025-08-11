@@ -1,6 +1,4 @@
-/**
- * Almacena el resultado de una prueba de benchmark
- */
+
 public class BenchmarkResult {
     private final int threads;
     private final long duration;

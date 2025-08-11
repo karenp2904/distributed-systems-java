@@ -1,0 +1,281 @@
+========================================
+  REPORTE DETALLADO DE BENCHMARK
+  Convertidor Web a PDF
+========================================
+
+FECHA: 2025-08-10 14:46:53
+
+PERFIL DE HARDWARE:
+- CPU Arquitectura: amd64
+- Núcleos disponibles: 12
+- Memoria JVM máxima: 4006 MB
+- Memoria JVM libre: 131 MB
+- Sistema Operativo: Windows 11 10.0
+- Java Version: 17.0.12
+
+CONFIGURACIÓN DEL BENCHMARK:
+- URLs procesadas: 6
+- Iteraciones por configuración: 3
+- Hilos probados: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+URLs UTILIZADAS:
+1. https://www.google.com
+2. https://www.wikipedia.org
+3. https://www.github.com
+4. https://www.stackoverflow.com
+5. https://www.oracle.com
+6. https://www.java.com
+
+RESULTADOS DETALLADOS:
+========================================
+HILOS: 1
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 39966.00 ms (39.966 seg)
+Tiempo mínimo: 35814 ms
+Tiempo máximo: 47992 ms
+Desviación estándar: 5676.37 ms
+Tiempos individuales:
+  Iteración 1: 47992 ms
+  Iteración 2: 35814 ms
+  Iteración 3: 36092 ms
+
+HILOS: 2
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 23767.33 ms (23.767 seg)
+Tiempo mínimo: 22317 ms
+Tiempo máximo: 25686 ms
+Desviación estándar: 1414.69 ms
+Speedup: 1.68x
+Eficiencia: 84.1%
+Mejora respecto a 1 hilo: 40.5%
+Tiempos individuales:
+  Iteración 1: 23299 ms
+  Iteración 2: 22317 ms
+  Iteración 3: 25686 ms
+
+HILOS: 3
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 24673.00 ms (24.673 seg)
+Tiempo mínimo: 23867 ms
+Tiempo máximo: 25626 ms
+Desviación estándar: 725.59 ms
+Speedup: 1.62x
+Eficiencia: 54.0%
+Mejora respecto a 1 hilo: 38.3%
+Tiempos individuales:
+  Iteración 1: 24526 ms
+  Iteración 2: 25626 ms
+  Iteración 3: 23867 ms
+
+HILOS: 4
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 23521.33 ms (23.521 seg)
+Tiempo mínimo: 22023 ms
+Tiempo máximo: 24575 ms
+Desviación estándar: 1088.26 ms
+Speedup: 1.70x
+Eficiencia: 42.5%
+Mejora respecto a 1 hilo: 41.1%
+Tiempos individuales:
+  Iteración 1: 24575 ms
+  Iteración 2: 22023 ms
+  Iteración 3: 23966 ms
+
+HILOS: 5
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 23310.67 ms (23.311 seg)
+Tiempo mínimo: 19648 ms
+Tiempo máximo: 28650 ms
+Desviación estándar: 3861.55 ms
+Speedup: 1.71x
+Eficiencia: 34.3%
+Mejora respecto a 1 hilo: 41.7%
+Tiempos individuales:
+  Iteración 1: 28650 ms
+  Iteración 2: 19648 ms
+  Iteración 3: 21634 ms
+
+HILOS: 6
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 21975.67 ms (21.976 seg)
+Tiempo mínimo: 20986 ms
+Tiempo máximo: 22765 ms
+Desviación estándar: 739.96 ms
+Speedup: 1.82x
+Eficiencia: 30.3%
+Mejora respecto a 1 hilo: 45.0%
+Tiempos individuales:
+  Iteración 1: 22176 ms
+  Iteración 2: 22765 ms
+  Iteración 3: 20986 ms
+
+HILOS: 7
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 22498.33 ms (22.498 seg)
+Tiempo mínimo: 20513 ms
+Tiempo máximo: 23536 ms
+Desviación estándar: 1404.32 ms
+Speedup: 1.78x
+Eficiencia: 25.4%
+Mejora respecto a 1 hilo: 43.7%
+Tiempos individuales:
+  Iteración 1: 23536 ms
+  Iteración 2: 23446 ms
+  Iteración 3: 20513 ms
+
+HILOS: 8
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 25703.33 ms (25.703 seg)
+Tiempo mínimo: 22578 ms
+Tiempo máximo: 27902 ms
+Desviación estándar: 2270.14 ms
+Speedup: 1.55x
+Eficiencia: 19.4%
+Mejora respecto a 1 hilo: 35.7%
+Tiempos individuales:
+  Iteración 1: 22578 ms
+  Iteración 2: 27902 ms
+  Iteración 3: 26630 ms
+
+HILOS: 9
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 26391.67 ms (26.392 seg)
+Tiempo mínimo: 24024 ms
+Tiempo máximo: 28980 ms
+Desviación estándar: 2029.29 ms
+Speedup: 1.51x
+Eficiencia: 16.8%
+Mejora respecto a 1 hilo: 34.0%
+Tiempos individuales:
+  Iteración 1: 28980 ms
+  Iteración 2: 24024 ms
+  Iteración 3: 26171 ms
+
+HILOS: 10
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 20430.33 ms (20.430 seg)
+Tiempo mínimo: 20099 ms
+Tiempo máximo: 20722 ms
+Desviación estándar: 255.88 ms
+Speedup: 1.96x
+Eficiencia: 19.6%
+Mejora respecto a 1 hilo: 48.9%
+Tiempos individuales:
+  Iteración 1: 20470 ms
+  Iteración 2: 20099 ms
+  Iteración 3: 20722 ms
+
+HILOS: 11
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 20380.67 ms (20.381 seg)
+Tiempo mínimo: 19908 ms
+Tiempo máximo: 21319 ms
+Desviación estándar: 663.51 ms
+Speedup: 1.96x
+Eficiencia: 17.8%
+Mejora respecto a 1 hilo: 49.0%
+Tiempos individuales:
+  Iteración 1: 21319 ms
+  Iteración 2: 19908 ms
+  Iteración 3: 19915 ms
+
+HILOS: 12
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 23907.33 ms (23.907 seg)
+Tiempo mínimo: 21536 ms
+Tiempo máximo: 27733 ms
+Desviación estándar: 2730.94 ms
+Speedup: 1.67x
+Eficiencia: 13.9%
+Mejora respecto a 1 hilo: 40.2%
+Tiempos individuales:
+  Iteración 1: 22453 ms
+  Iteración 2: 21536 ms
+  Iteración 3: 27733 ms
+
+HILOS: 13
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 35038.33 ms (35.038 seg)
+Tiempo mínimo: 34452 ms
+Tiempo máximo: 36076 ms
+Desviación estándar: 735.81 ms
+Speedup: 1.14x
+Eficiencia: 8.8%
+Mejora respecto a 1 hilo: 12.3%
+Tiempos individuales:
+  Iteración 1: 34587 ms
+  Iteración 2: 34452 ms
+  Iteración 3: 36076 ms
+
+HILOS: 14
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 36776.00 ms (36.776 seg)
+Tiempo mínimo: 33302 ms
+Tiempo máximo: 41530 ms
+Desviación estándar: 3478.87 ms
+Speedup: 1.09x
+Eficiencia: 7.8%
+Mejora respecto a 1 hilo: 8.0%
+Tiempos individuales:
+  Iteración 1: 41530 ms
+  Iteración 2: 35496 ms
+  Iteración 3: 33302 ms
+
+HILOS: 15
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 33376.33 ms (33.376 seg)
+Tiempo mínimo: 32050 ms
+Tiempo máximo: 34531 ms
+Desviación estándar: 1020.11 ms
+Speedup: 1.20x
+Eficiencia: 8.0%
+Mejora respecto a 1 hilo: 16.5%
+Tiempos individuales:
+  Iteración 1: 32050 ms
+  Iteración 2: 34531 ms
+  Iteración 3: 33548 ms
+
+HILOS: 16
+----------------------------------------
+Iteraciones realizadas: 3
+Tiempo promedio: 32807.00 ms (32.807 seg)
+Tiempo mínimo: 31848 ms
+Tiempo máximo: 33536 ms
+Desviación estándar: 708.05 ms
+Speedup: 1.22x
+Eficiencia: 7.6%
+Mejora respecto a 1 hilo: 17.9%
+Tiempos individuales:
+  Iteración 1: 31848 ms
+  Iteración 2: 33037 ms
+  Iteración 3: 33536 ms
+
+ANÁLISIS Y CONCLUSIONES:
+========================================
+- Configuración óptima: 11 hilos
+- Tiempo óptimo promedio: 20380.67 ms
+- Speedup máximo: 1.96x
+- Mejora máxima: 49.0%
+
+RECOMENDACIONES:
+- Núcleos del sistema: 12
+- Rango óptimo sugerido: 6-24 hilos
+
+========================================
+Reporte generado automáticamente
+========================================
