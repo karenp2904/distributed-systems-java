@@ -1,0 +1,5 @@
+REPORTE DE CONVERSIÓN A PDF
+Fecha: 2025-08-12T15:18:59.223702700
+Tiempo total: 358410 ms
+Archivos procesados: 47
+Carpeta de salida: K:\SistemasDistribuidos\Lab_FilesToPdf\output
